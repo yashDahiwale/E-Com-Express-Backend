@@ -36,7 +36,7 @@ router.post("/user/loginUser", async (req, res) => {
             throw ("Wrong Email or Password");
         }
         console.log("Login Successfull");
-        const token = await generateToken(isUserExist.name, isUserExist.email);
+        const token = await generateToken(isUserExist.email);
         res.status(200).json({ message: "Login Successfull", token });
     } catch (error) {
         console.log(error);
@@ -44,14 +44,14 @@ router.post("/user/loginUser", async (req, res) => {
     }
 })
 
-router.get("user/dashboard", authUser, (req, res)=> {
+router.get("/user/dashboard", authUser, (req, res) => {
     try {
         const userData = req.userData;
         console.log("Dashboard access allowed")
-        res.status(200).json({message:`Welcome ${userData.name}.` , userData }) 
+        res.status(200).json({ message: `Welcome ${userData.name}.`, userData })
     } catch (error) {
         console.log(error)
-        res.status(400).json({message:"Error while validating user!" , err})
+        res.status(400).json({ message: "Error while validating user!", err })
     }
 })
 

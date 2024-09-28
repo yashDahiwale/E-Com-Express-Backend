@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const generateToken = async (data) => {
     const payload = { data }
     const token = jwt.sign(payload, JWT_SECRET);
-    const userEmail = payload.data.email;
+    const userEmail = payload.data;
 
     // Store token in Database
     const result = await userModel.updateOne({ email: userEmail }, { $set: { token: token } })

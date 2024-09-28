@@ -11,7 +11,8 @@ const authUser = async (req, res, next) => {
         if (!isUserValid) {
             throw ("Invalid token")
         }
-        const userData = await userModel.findOne({ email: isUserValid.email, token: userToken })
+        console.log(isUserValid);
+        const userData = await userModel.findOne({ email: isUserValid.data, token: userToken })
         if (!userData) {
             throw("User not found");
         }
@@ -19,7 +20,7 @@ const authUser = async (req, res, next) => {
         next();
     } catch (error) {
         console.log("Error while authentication;",error)
-        res.status(401).json({message:"Unauthorized! Not a valid request"});
+        res.status(401).json({message:"Unauthorized! Not a valid request",error});
     }
 }
 
