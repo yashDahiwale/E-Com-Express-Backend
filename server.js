@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Server is running at port ${port}\nLink: http://localhost:${port}`);
+    console.log(`Server is running at port ${port}`);
 })
 
 // Home Route
