@@ -32,3 +32,12 @@ app.use(router);
 app.listen(port, () => {
     console.log(`Server is running at port ${port}\nLink: http://localhost:${port}`);
 })
+
+// Home Route
+app.get("/", (req, res) => {
+    res.status(200).json({
+        status: 200,
+        success: true,
+        message: "E-Com Backend Server",
+    });
+})
